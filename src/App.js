@@ -5,6 +5,7 @@ import Signup from "./scenes/signup/Signup";
 import Shorts from "./components/Reels/Reels"
 import Listflat from "./scenes/listaflat/Listflat";
 import LandingPage from "./scenes/Landing Page/Landingpage";
+import MatchedUsers from "./scenes/matchedUsers/MatchedUsers";
 
 import Home from "./scenes/home/Home";
 import Hotel from "./scenes/hotel/Hotel";
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/hotels" element={<List />} />
                     <Route path="/hotels/:id" element={<Hotel />} />
                     <Route path="/Profile" element={<Profile />} />
+                    <Route path="/MatchedUsers" element={<MatchedUsers />} />
                 </Routes>
             </BrowserRouter>
         </div>

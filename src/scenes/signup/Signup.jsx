@@ -25,7 +25,7 @@ const SignupPage = () => {
       try {
          const res = await createUserWithEmailAndPassword(auth, email, password);
          console.log(res);
-         await setDoc(doc(db, "workers", res.user.uid), {
+         await setDoc(doc(db, "users", res.user.uid), {
             name,
             email,
             password,
