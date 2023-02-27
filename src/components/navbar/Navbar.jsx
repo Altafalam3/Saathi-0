@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>}
         {currentUser && 
           <div className="navItems">
-          <Link to="/logout"><button className="navButton">Logout</button></Link>
+          <button className="headerBtn">Login / Register</button>
         </div>
         }
       </div>
