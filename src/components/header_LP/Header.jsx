@@ -84,7 +84,10 @@ const Header = ({ type }) => {
             <p className="headerDesc">
               Your One Stop Solution for  finding a suitable locality, flat, and flatmate 
             </p>
-            <button className="headerBtn">Sign in / Register</button>
+
+
+            {/* Header Search Bar */}
+
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
