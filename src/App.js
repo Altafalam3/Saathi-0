@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./scenes/login/Login";
 import Signup from "./scenes/signup/Signup";
-import Shorts from "./components/Reels/Reels"
+import Shorts from "./components/Reels/Reels";
 import Listflat from "./scenes/listaflat/Listflat";
 import LandingPage from "./scenes/Landing Page/Landingpage";
 import MatchedUsers from "./scenes/matchedUsers/MatchedUsers";

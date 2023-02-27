@@ -1,0 +1,60 @@
+.app {
+    width: 30%;
+    overflow-x: hidden;
+}
+.ageslider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+.AGDdeets {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 10rem;
+}
+.pListItem {
+    width: 5rem;
+}
+.sListImg {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.sflatmates {
+    padding: 2rem 10rem;
+}
+.sList {
+    width: 100%;
+    max-width: 2000px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.Ldropdown {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 10rem;
+}
+.ageslider:hover {
+    opacity: 1;
+}
+.ageslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #04aa6d;
+    cursor: pointer;
+}
+.ageslider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04aa6d;
+    cursor: pointer;
+}
