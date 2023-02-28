@@ -4,7 +4,7 @@ import { auth, db , storage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 import './signup.css'
-// import Upload from "./Upload";
+
 import {
    ref,
    uploadBytes,
@@ -180,7 +180,6 @@ const SignupPage = () => {
                   id="file"
                />
             </div>
-            <div></div>
             <button type="submit">Sign Up</button>
          </form>
       </div>
