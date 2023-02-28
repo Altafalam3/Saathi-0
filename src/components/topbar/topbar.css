@@ -1,0 +1,31 @@
+.topbar {
+   height: 5rem;
+   background-color: #68b2a0;
+   width: 100%;
+   display: fixed;
+   top: 0;
+   left: 0;
+}
+
+.topContainer {
+   width: 100%;
+   max-width: 1024px;
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.logo image {
+   height: 2px;
+   width: 4px;
+   margin-bottom: 50px;
+}
+
+.topButton {
+   margin-left: 20px;
+   border: none;
+   padding: 5px 10px;
+   cursor: pointer;
+   color: #003580;
+}
