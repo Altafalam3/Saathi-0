@@ -6,7 +6,7 @@ import Shorts from "./components/Reels/Reels";
 import Listflat from "./scenes/listaflat/Listflat";
 import LandingPage from "./scenes/Landing Page/Landingpage";
 import MatchedUsers from "./scenes/matchedUsers/MatchedUsers";
-
+import Tabs from "./components/tabs/Tabs";
 import Home from "./scenes/home/Home";
 import Hotel from "./scenes/hotel/Hotel";
 import List from "./scenes/list/List";
@@ -38,6 +38,7 @@ function App() {
                     <Route path="/hotels/:id" element={<Hotel />} />
                     <Route path="/Profile" element={<Profile />} />
                     <Route path="/MatchedUsers" element={<MatchedUsers />} />
+                    <Route path="/Tabs" element={<Tabs />} />
                 </Routes>
             </BrowserRouter>
         </div>

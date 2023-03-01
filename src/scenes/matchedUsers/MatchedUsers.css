@@ -29,6 +29,10 @@
 .sflatmates {
     padding: 2rem 10rem;
 }
+.matchedusersnavbar ul {
+    display: flex;
+    justify-content: space-between;
+}
 .sList {
     width: 100%;
     max-width: 2000px;

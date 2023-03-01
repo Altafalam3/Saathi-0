@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from "../../firebase"
-import Navbar from "../../components/navbar/Navbar";
+// import Navbar from "../../components/navbar/Navbar";
 import './MatchedUsers.css';
 import SortedFlatmates from "../../components/sortedflatmates/SortedFlatmates";
 import MailList   from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
-
-function MatchedUsers() {
+import { link } from "react-router-dom";
+function 
+MatchedUsers() {
    const [users, setUsers] = useState([]);
    const userscollectionRef = collection(db, "users");
    const [searchin, setSearchin] = useState('');
@@ -42,7 +43,16 @@ function MatchedUsers() {
    return (
       <>
          <div className="matchUser">
-            <Navbar />
+            {/* <Navbar /> */}
+            <div className="matchedusersnavbar">
+               <ul>
+                  <link to ={"./home"}>
+                     <li>Find FlatMates</li>
+                     </link>
+                  <li>Post A Property</li>
+                  <li>Find Flats</li>
+               </ul>
+            </div>
             <div className="AGDdeets">
             <div className="age">
               <input type="range" min="1" max="100" defaultValue="50" className="ageslider" ref={sliderRef} style={{ height: "25px" }} />
