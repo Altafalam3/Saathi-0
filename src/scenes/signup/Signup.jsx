@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../firebase";
+import { auth, db , storage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import './signup.css'
+
+import {
+   ref,
+   uploadBytes,
+   getDownloadURL,
+ } from "firebase/storage";
+//  import { addDoc,  updateDoc, collection } from "firebase/firestore";
+ import { v4 } from 'uuid';
 
 const SignupPage = () => {
    const [name, setName] = useState("");
@@ -17,28 +25,37 @@ const SignupPage = () => {
    const [isAlcoholic, setIsAlcoholic] = useState(false);
    const [foodPreference, setFoodPreference] = useState("");
    const [hobbies, setHobbies] = useState("");
- 
+
    const navigate = useNavigate();
 
    const handleSubmit = async (event) => {
       event.preventDefault();
+      const file = event.target[11].files[0];
+      console.log(file);
+      let url;
       try {
          const res = await createUserWithEmailAndPassword(auth, email, password);
-         console.log(res);
-         await setDoc(doc(db, "users", res.user.uid), {
-            name,
-            email,
-            password,
-            age,
-            gender,
-            occupation,
-            loc,
-            isSmoker,
-            isAlcoholic,
-            foodPreference,
-            hobbies
+         // console.log(res);
+         const id = v4();
+         const storageRef = ref(storage, `user-${id}`);
+         await uploadBytes(storageRef, file).then(() => {
+            getDownloadURL(storageRef).then(async (downloadUrl) => {
+               await setDoc(doc(db, "users", res.user.uid), {
+                  name,
+                  email,
+                  password,
+                  age,
+                  gender,
+                  occupation,
+                  loc,
+                  isSmoker,
+                  isAlcoholic,
+                  foodPreference,
+                  hobbies,
+                  file: downloadUrl
+               });
+            });
          });
-
          navigate("/login");
       } catch (err) {
          console.log(err);
@@ -121,19 +138,19 @@ const SignupPage = () => {
             </div>
             <div className="form-group">
                <label >Are you a smoker?
-               <input
-                  type="checkbox"
-                  checked={isSmoker}
-                  onChange={(event) => setIsSmoker(event.target.value)}
-               /></label>
+                  <input
+                     type="checkbox"
+                     checked={isSmoker}
+                     onChange={(event) => setIsSmoker(event.target.value)}
+                  /></label>
             </div>
             <div className="form-group">
                <label>Are you a alcoholic?
-               <input
-                  type="checkbox"
-                  checked={isAlcoholic}
-                  onChange={(event) => setIsAlcoholic(event.target.value)}
-               /></label>
+                  <input
+                     type="checkbox"
+                     checked={isAlcoholic}
+                     onChange={(event) => setIsAlcoholic(event.target.value)}
+                  /></label>
             </div>
             <div className="form-group">
                <label>Food Preferences</label>
@@ -151,6 +168,15 @@ const SignupPage = () => {
                   value={hobbies}
                   placeholder="Hobbies"
                   onChange={(event) => setHobbies(event.target.value)}
+               />
+            </div>
+            <div className="form-group">
+               <label>Upload Profile Photo</label>
+               <input
+                  type="file"
+                  multiple
+                  name="file"
+                  id="file"
                />
             </div>
             <button type="submit">Sign Up</button>

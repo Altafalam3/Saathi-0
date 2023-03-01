@@ -4,7 +4,6 @@ import Login from "./scenes/login/Login";
 import Signup from "./scenes/signup/Signup";
 import Shorts from "./components/Reels/Reels";
 import Listflat from "./scenes/listaflat/Listflat";
-import LandingPage from "./scenes/Landing Page/Landingpage";
 import MatchedUsers from "./scenes/matchedUsers/MatchedUsers";
 import Tabs from "./components/tabs/Tabs";
 import Home from "./scenes/home/Home";
@@ -13,7 +12,8 @@ import List from "./scenes/list/List";
 
 import { LocationContextProvider } from "./Context/LocationContext";
 import Tweets from "./components/Tweets/Tweets";
-import Profile from "./scenes/profile/Profile";
+import Dashboard from "./scenes/dashboard/Dashboard";
+import PostFlat from "./scenes/postflat/PostFlat";
 
 function App() {
     return (
@@ -27,8 +27,6 @@ function App() {
 
                     {/* <Route path="/geolocation" element={<GeoAPI />} /> */}
 
-                    <Route path="/landingPage" element={<LandingPage />} />
-
                     <Route path="/home" element={<Home />} />
 
                     <Route path="/tweets" element={<Tweets />} />
@@ -36,8 +34,9 @@ function App() {
 
                     <Route path="/hotels" element={<List />} />
                     <Route path="/hotels/:id" element={<Hotel />} />
-                    <Route path="/Profile" element={<Profile />} />
                     <Route path="/MatchedUsers" element={<MatchedUsers />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/postflat" element={<PostFlat/>} />
                     <Route path="/Tabs" element={<Tabs />} />
                 </Routes>
             </BrowserRouter>
