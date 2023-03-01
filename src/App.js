@@ -13,6 +13,7 @@ import List from "./scenes/list/List";
 import { LocationContextProvider } from "./Context/LocationContext";
 import Tweets from "./components/Tweets/Tweets";
 import Dashboard from "./scenes/dashboard/Dashboard";
+import PostFlat from "./scenes/postflat/PostFlat";
 
 function App() {
     return (
@@ -35,7 +36,7 @@ function App() {
                     <Route path="/hotels/:id" element={<Hotel />} />
                     <Route path="/MatchedUsers" element={<MatchedUsers />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    {/* <Route path="/" */}
+                    <Route path="/postflat" element={<PostFlat/>} />
                 </Routes>
             </BrowserRouter>
         </div>

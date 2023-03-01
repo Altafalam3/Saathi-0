@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db , storage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import './signup.css'
 
 import {
    ref,
    uploadBytes,
    getDownloadURL,
-   uploadBytesResumable,
  } from "firebase/storage";
- import { addDoc,  updateDoc, collection } from "firebase/firestore";
+//  import { addDoc,  updateDoc, collection } from "firebase/firestore";
  import { v4 } from 'uuid';
 
 const SignupPage = () => {
