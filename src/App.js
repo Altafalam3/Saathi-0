@@ -5,7 +5,7 @@ import Signup from "./scenes/signup/Signup";
 import Shorts from "./components/Reels/Reels";
 import Listflat from "./scenes/listaflat/Listflat";
 import MatchedUsers from "./scenes/matchedUsers/MatchedUsers";
-import Tabs from "./components/tabs/Tabs";
+// import Tabs from "./components/tabs/Tabs";
 import Home from "./scenes/home/Home";
 import Hotel from "./scenes/hotel/Hotel";
 import List from "./scenes/list/List";
@@ -34,10 +34,10 @@ function App() {
 
                     <Route path="/hotels" element={<List />} />
                     <Route path="/hotels/:id" element={<Hotel />} />
-                    <Route path="/MatchedUsers" element={<MatchedUsers />} />
+                    <Route path="/matchedUsers" element={<MatchedUsers />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/postflat" element={<PostFlat/>} />
-                    <Route path="/Tabs" element={<Tabs />} />
+                    <Route path="/postflat" element={<PostFlat />} />
+                    {/* <Route path="/tabs" element={<Tabs />} /> */}
                 </Routes>
             </BrowserRouter>
         </div>
