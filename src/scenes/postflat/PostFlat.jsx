@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
 import "./postflat.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../firebase";
 import {
    ref,
@@ -14,6 +14,11 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
 const PostFlat = () => {
+   const [propType, setPropType] = useState("");
+   const [roomType, setRoomType] = useState("");
+   const [gender, setGender] = useState("");
+   const [occupation, setOccupation] = useState("");
+   const [bedsAvail, setBedsAvail] = useState("");
    const [rent, setRent] = useState("");
    const [area, setArea] = useState("");
    const [minstay, setMinstay] = useState("");
@@ -22,22 +27,62 @@ const PostFlat = () => {
    const [address, setAddress] = useState("");
    const [phonenum, setPhonenum] = useState("");
 
+   const navigate = useNavigate();
 
-   function handleAgeRangeChange(value) {
-      setAgeRange(value);
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const flatPhoto = e.target[12].files[0];
+      console.log(flatPhoto);
+      let url;
+      try {
+         const id = v4();
+         const storageRef = ref(storage, `flat-${id}`);
+         await uploadBytes(storageRef, flatPhoto).then(() => {
+            getDownloadURL(storageRef).then(async (downloadUrl) => {
+               await addDoc(collection(db, "flats"), {
+                  propType,
+                  roomType,
+                  gender,
+                  occupation,
+                  bedsAvail,
+                  rent,
+                  area,
+                  minstay,
+                  ageRange,
+                  city,
+                  address,
+                  phonenum,
+                  flatPhoto:downloadUrl
+               });
+
+            });
+         });
+      }
+      catch (err) {
+         console.log(err);
+      }
    }
 
    return (
       <div className="postflat-container">
-         <form className="postflat-form">
-            <div class="flat-group">
-               <p class="font-weight-bold">Property type</p>
+         <form className="postflat-form" onSubmit={handleSubmit}>
+            <div className="flat-group">
+               <p className="font-weight-bold">Property type</p>
                <fieldset>
-                  <input name="propertyType" type="radio" id="flat" value="flat" className="input-hide" />
+                  <input name="propertyType" type="radio" id="flat" value="flat"
+                     className="input-hide" onChange={(e) => setPropType(e.target.value)}
+                  />
                   <label htmlFor="flat" className="label-pop">Flat</label>
-                  <input name="propertyType" type="radio" id="house" value="house" className="input-hide" />
+
+                  <input name="propertyType" type="radio" id="house" value="house"
+                     className="input-hide" onChange={(e) => setPropType(e.target.value)}
+                  />
                   <label htmlFor="house" className="label-pop">House</label>
-                  <input name="propertyType" type="radio" id="dorm" value="dorm" className="input-hide" />
+
+                  <input name="propertyType" type="radio" id="dorm" value="dorm"
+                     className="input-hide" onChange={(e) => setPropType(e.target.value)}
+                  />
                   <label htmlFor="dorm" className="label-pop">Dorm</label>
                </fieldset>
             </div>
@@ -45,9 +90,14 @@ const PostFlat = () => {
             <div className="flat-group">
                <p className="font-weight-bold">Room type</p>
                <fieldset>
-                  <input name="roomType" type="radio" id="private_room" value="private_room" className="input-hide" />
+                  <input name="roomType" type="radio" id="private_room" value="private_room"
+                     className="input-hide" onChange={(e) => setRoomType(e.target.value)}
+                  />
                   <label htmlFor="private_room" className="label-pop">Private Room</label>
-                  <input name="roomType" type="radio" id="shared_room" value="shared_room" className="input-hide" />
+
+                  <input name="roomType" type="radio" id="shared_room" value="shared_room"
+                     className="input-hide" onChange={(e) => setRoomType(e.target.value)}
+                  />
                   <label htmlFor="shared_room" className="label-pop">Shared Room</label>
                </fieldset>
             </div>
@@ -55,35 +105,64 @@ const PostFlat = () => {
             <div className="flat-group">
                <p className="font-weight-bold">Prefered Gender</p>
                <fieldset>
-                  <input name="preferGender" type="radio" id="male" value="male" className="input-hide" />
+                  <input name="preferGender" type="radio" id="male" value="male"
+                     className="input-hide" onChange={(e) => setGender(e.target.value)}
+                  />
                   <label htmlFor="male" className="label-pop">Male</label>
-                  <input name="preferGender" type="radio" id="female" value="female" className="input-hide" />
+
+                  <input name="preferGender" type="radio" id="female" value="female"
+                     className="input-hide" onChange={(e) => setGender(e.target.value)}
+                  />
                   <label htmlFor="female" className="label-pop">Female</label>
-                  <input name="preferGender" type="radio" id="anygender" value="anygender" className="input-hide" />
+
+                  <input name="preferGender" type="radio" id="anygender" value="anygender"
+                     className="input-hide" onChange={(e) => setGender(e.target.value)}
+                  />
                   <label htmlFor="anygender" className="label-pop">Doesn't Matter</label>
                </fieldset>
             </div>
+
             <div className="flat-group">
                <p className="font-weight-bold">Prefered Occupation</p>
                <fieldset>
-                  <input name="preferOccupation" type="radio" id="student" value="student" className="input-hide" />
+                  <input name="preferOccupation" type="radio" id="student" value="student"
+                     className="input-hide" onChange={(e) => setOccupation(e.target.value)}
+                  />
                   <label htmlFor="student" className="label-pop">Student</label>
-                  <input name="preferOccupation" type="radio" id="professional" value="professional" className="input-hide" />
+
+                  <input name="preferOccupation" type="radio" id="professional" value="professional"
+                     className="input-hide" onChange={(e) => setOccupation(e.target.value)}
+                  />
                   <label htmlFor="professional" className="label-pop">Professional</label>
-                  <input name="preferOccupation" type="radio" id="anyoccupation" value="anyoccupation" className="input-hide" />
+
+                  <input name="preferOccupation" type="radio" id="anyoccupation" value="anyoccupation"
+                     className="input-hide" onChange={(e) => setOccupation(e.target.value)}
+                  />
                   <label htmlFor="anyoccupation" className="label-pop">Doesn't Matter</label>
                </fieldset>
             </div>
+
             <div className="flat-group">
                <p className="font-weight-bold">Total no of Bedrooms</p>
                <fieldset>
-                  <input name="availableBeds" type="radio" id="1availableBeds" value="1" className="input-hide" />
+                  <input name="availableBeds" type="radio" id="1availableBeds" value="1"
+                     className="input-hide" onChange={(e) => setBedsAvail(e.target.value)}
+                  />
                   <label htmlFor="1availableBeds" className="label-pop">1</label>
-                  <input name="availableBeds" type="radio" id="2availableBeds" value="2" className="input-hide" />
+
+                  <input name="availableBeds" type="radio" id="2availableBeds" value="2"
+                     className="input-hide" onChange={(e) => setBedsAvail(e.target.value)}
+                  />
                   <label htmlFor="2availableBeds" className="label-pop">2</label>
-                  <input name="availableBeds" type="radio" id="3availableBeds" value="3" className="input-hide" />
+
+                  <input name="availableBeds" type="radio" id="3availableBeds" value="3"
+                     className="input-hide" onChange={(e) => setBedsAvail(e.target.value)}
+                  />
                   <label htmlFor="3availableBeds" className="label-pop">3</label>
-                  <input name="availableBeds" type="radio" id="3+availableBeds" value="3+" className="input-hide" />
+
+                  <input name="availableBeds" type="radio" id="3+availableBeds" value="3+"
+                     className="input-hide" onChange={(e) => setBedsAvail(e.target.value)}
+                  />
                   <label htmlFor="3+availableBeds" className="label-pop">3+</label>
                </fieldset>
             </div>
@@ -140,7 +219,7 @@ const PostFlat = () => {
                      minValue={15}
                      maxValue={80}
                      value={ageRange}
-                     onChange={handleAgeRangeChange}
+                     onChange={(value) => setAgeRange(value)}
                   />
                </fieldset>
                <p className="age-p">Age selected is {ageRange.min} - {ageRange.max}</p>
@@ -197,8 +276,8 @@ const PostFlat = () => {
                      className="input-ok"
                      type="file"
                      multiple
-                     name="propertyimg"
-                     id="propertyimg"
+                     name="flatPhoto"
+                     id="flatPhoto"
                   />
                </fieldset>
             </div>
@@ -206,7 +285,7 @@ const PostFlat = () => {
             <div className="flat-group">
                <p className="font-weight-bold"></p>
                <fieldset>
-               <button type="submit" className="flat-but">Submit Flat</button>
+                  <button type="submit" className="flat-but">Submit Flat</button>
                </fieldset>
             </div>
          </form>

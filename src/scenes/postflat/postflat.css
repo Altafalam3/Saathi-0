@@ -78,7 +78,7 @@
    transition: all 0.3s ease;
    outline: none;
  }
- 
+
  .flat-but:hover {
    background-color: green;
    transform: translateY(-5px);

@@ -12,9 +12,6 @@ import { doc, addDoc, setDoc, updateDoc, collection } from "firebase/firestore";
 import { v4 } from 'uuid';
 
 
-// import Upload from './Upload'
-import Upload from './Upload'
-
 const Listflat = () => {
   const [loc, setLoc] = useState("");
   const [rent, setRent] = useState("");

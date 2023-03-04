@@ -1,7 +1,13 @@
+.matchedusersnavbar ul {
+    display: flex;
+    justify-content: space-between;
+}
+
 .app {
     width: 30%;
     overflow-x: hidden;
 }
+
 .ageslider {
     -webkit-appearance: none;
     appearance: none;
@@ -13,26 +19,27 @@
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
 }
+
 .AGDdeets {
     display: flex;
     justify-content: space-between;
     padding: 2rem 10rem;
 }
+
 .pListItem {
     width: 5rem;
 }
+
 .sListImg {
     width: 100%;
     height: 150px;
     object-fit: cover;
 }
+
 .sflatmates {
     padding: 2rem 10rem;
 }
-.matchedusersnavbar ul {
-    display: flex;
-    justify-content: space-between;
-}
+
 .sList {
     width: 100%;
     max-width: 2000px;
@@ -40,14 +47,17 @@
     justify-content: space-between;
     gap: 20px;
 }
+
 .Ldropdown {
     display: flex;
     justify-content: space-between;
     padding: 2rem 10rem;
 }
+
 .ageslider:hover {
     opacity: 1;
 }
+
 .ageslider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -56,9 +66,35 @@
     background: #04aa6d;
     cursor: pointer;
 }
+
 .ageslider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: #04aa6d;
     cursor: pointer;
+}
+
+.flatmate-btndiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.flatmate-but {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #6a11cb;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.flatmate-but:hover {
+    background-color: green;
+    transform: translateY(-3px);
 }
